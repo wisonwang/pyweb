@@ -1,0 +1,10 @@
+{
+    "env": "dev",
+    "mongo-host": "192.168.1.125",
+    "mongo-port": 27017,
+    "mongo-max-pool-size": 200,
+    "logger-root-path": "/var/app/uha/logs",
+
+    "file-root": "/data/www/uhademo/images",
+    "file-http-head": "http://192.168.1.128:8001/images"
+}

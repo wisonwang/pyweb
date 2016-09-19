@@ -1,0 +1,95 @@
+<!--
+ **********************************************************************
+
+ Copyright (c) 2003-2016 ZeroC, Inc. All rights reserved.
+
+ **********************************************************************
+-->
+
+<icegrid>
+
+  <application name="UhaService">
+
+    <node name="node1">
+        <server id="UserService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="UserService">
+	            <object identity="userService" type="::uha::UserService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+
+        <server id="PublishService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="PublishService">
+	            <object identity="publishService" type="::uha::PublishService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+
+        <server id="GovPageService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="GovPageService">
+	            <object identity="govPageService" type="::uha::GovPageService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+        
+        <server id="NoticeService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="NoticeService">
+	            <object identity="noticeService" type="::uha::NoticeService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+
+        <server id="PayService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="PayService">
+	            <object identity="payService" type="::uha::PayService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+
+        <server id="RecommenderService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="RecommenderService">
+	            <object identity="recommenderService" type="::uha::RecommenderService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+
+        <server id="PayService" exe="python" activation="on-demand">
+            <option>uhaServer.py</option>
+	        <adapter name="PayService">
+	            <object identity="payService" type="::uha::PayService" property="Identity" />
+	        </adapter>
+            <property name="IceMX.Metrics.Debug.GroupBy" value="id"/>
+            <property name="IceMX.Metrics.Debug.Disabled" value="1"/>
+            <property name="IceMX.Metrics.ByParent.GroupBy" value="parent"/>
+            <property name="IceMX.Metrics.ByParent.Disabled" value="1"/>
+        </server>
+        
+    </node>
+
+  </application>
+
+</icegrid>

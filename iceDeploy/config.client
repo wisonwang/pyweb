@@ -1,0 +1,6 @@
+#
+# The IceGrid locator proxy.
+#
+Ice.Default.Locator=UhaIceGrid/Locator:default -h localhost -p 4061
+Ice.Default.Timeout=5000
+Ice.MessageSizeMax=1024000
