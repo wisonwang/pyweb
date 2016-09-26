@@ -2,7 +2,7 @@
 
 from setuptools import setup, find_packages
 
-name = 'IceMongo'
+name = 'icemongo'
 version = '0.0.1'
 author = 'WisonWang'
 author_email = 'fangfu2012@gmail.com'

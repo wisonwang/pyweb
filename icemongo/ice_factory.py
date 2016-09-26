@@ -6,9 +6,9 @@ import IceGrid
 import os
 from logging import getLogger
 
-logger = getLogger('uha.core.ice_factory')
+logger = getLogger('icemongo.ice_factory')
 
-os.environ["ICE_CONFIG"] = "/opt/uhaService/ice-config/config.client"
+os.environ["ICE_CONFIG"] = "/opt/ice-config/config.client"
 
 
 @singleton
@@ -18,10 +18,12 @@ class IceFactory():
     """
     _ic = None
 
-    def __init__(self, config=dict(), *args, **kwargs):
+    def __init__(self, config=dict(), gridProxy="IceGrid/Query",
+                 *args, **kwargs):
         "ice factory init"
         # TODO: xxx
         self._ic = Ice.initialize(sys.argv)
+        self.gridProxy = gridProxy
 
     def getIceProxy(
             self, ProxyType, proxyTypeName):
@@ -29,7 +31,7 @@ class IceFactory():
         proxy = None
         try:
             query = IceGrid.QueryPrx.checkedCast(
-                self._ic.stringToProxy("UhaIceGrid/Query"))
+                self._ic.stringToProxy(self.gridProxy))
             proxy = ProxyType.checkedCast(
                 query.findObjectByType(proxyTypeName))
         except Exception as e:
