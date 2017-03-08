@@ -1,13 +1,6 @@
-twisted==15.4.0
-pyopenssl==0.15.1
-txJSON-RPC==0.3.1
 decorator==4.0.4
 pymongo==3.1.1
 zeroc-ice==3.6.1
 requests
-Ghost.py==0.2.3
 fabric
-ndg-httpsclient
-pyasn1
-bs4
-pillow
+connexion==1.1.5
