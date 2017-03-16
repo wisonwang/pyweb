@@ -62,6 +62,7 @@ def run_server(
     for root, dirs, files in os.walk(specification_base_dir):
         for i in files:
             if os.path.splitext(i)[1] == ".yaml":
+                print i, root
                 if root == specification_base_dir:
                     add_api(i)
                 else:

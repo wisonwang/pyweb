@@ -1,0 +1,186 @@
+swagger: "2.0"
+info:
+  description: "swagger api 样例-用户相关接口"
+  version: "1.0.0"
+  title: "用户相关接口"
+  termsOfService: "http://****.xxxx/xxx"
+  contact:
+    email: "fangfu2012@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "0.0.0.0"
+basePath: "/v2"
+tags:
+- name: "api.user"
+  description: "常用用户管理操作"
+  externalDocs:
+    description: "swagger 官方文档"
+    url: "http://swagger.io"
+schemes:
+- "http"
+paths:
+  /user/thirdPartLogin:
+    post:
+      tags:
+      - "user thirdPartLogin"
+      summary: "第三方登录接口"
+      description: ""
+      x-swagger-router-controller: api.user
+      operationId: "thirdPartLogin"
+      consumes:
+      - "application/json"
+      - "application/xml"
+      produces:
+      - "application/xml"
+      - "application/json"
+      parameters:
+        - name : "thirdPartLoginInfo"
+          in: "body"
+          description: "第三方登录信息"
+          required: true
+          schema:
+            $ref: "#/definitions/ThirdPartLoginInfo"
+      responses:
+        405:
+          description: "登录失败"
+      security:
+      - spacelive_auth:
+        - "user"
+
+  /user/login:
+      post:
+        tags:
+          - ""
+        summary: "用户登录"
+        description: ""
+        x-swagger-router-controller: api.user
+        operationId: "login"
+        consumes:
+          - "application/json"
+          - "application/xml"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name : "loginInfo"
+            in: "body"
+            description: "登录信息"
+            required: true
+            schema:
+              $ref: "#/definitions/loginInfo"
+        responses:
+          405:
+            description: "登录失败"
+          default:
+            $ref: "#/responses/default"
+        security:
+          - spacelive_auth:
+              - user
+  /user/register:
+      post:
+        tags:
+          - ""
+        summary: "用户注册"
+        description: ""
+        x-swagger-router-controller: api.user
+        operationId: "register"
+        consumes:
+          - "application/json"
+          - "application/xml"
+        produces:
+          - "application/xml"
+          - "application/json"
+        parameters:
+          - name : "registerInfo"
+            in: "body"
+            description: "注册信息"
+            required: true
+            schema:
+              $ref: "#/definitions/registerInfo"
+        responses:
+          405:
+            description: "登录失败"
+          
+        security:
+          - spacelive_auth:
+              - user
+                              
+securityDefinitions:
+  spacelive_auth:
+    type: "oauth2"
+    authorizationUrl: "http://spacelive.club/oauth/dialog"
+    flow: "implicit"
+    scopes:
+      user: "user"
+      admin: "admin system"
+  api_key:
+    type: "apiKey"
+    name: "api_key"
+    in: "header"
+    
+definitions:
+  ThirdPartLoginInfo:
+    type: "object"
+    properties:
+      openId:
+        type: "string"
+        description: "第三方账号ID"
+      type:
+        type: integer
+        description: "第三方类型1. qq， 2. 微博， 3.微信"
+      password:
+        type: string
+        description: "用户密码"
+        format: password
+      verifyCode:
+        type: string
+        description: "手机验证码"
+        
+  loginInfo:
+    type: "object"
+    properties:
+      phone:
+        type: "string"
+        minLength: 5
+        maxLength: 50
+        description: "用户ID／手机号"
+      password:
+        type: string
+        minLength: 6
+        maxLength: 50
+        format: password
+        description: "第三方类型0. 密码登录， 1. 手机验证码登录，"
+  registerInfo:
+    type: "object"
+    properties:
+      phone:
+        type: "string"
+        description: "手机号"
+      verifyCode:
+        type: string
+        description: 手机验证码
+  ApiResponse:
+    type: "object"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      type:
+        type: "string"
+      message:
+        type: "string"
+        
+responses:
+  200:
+    description: normal
+    schema:
+      $ref: '#/definitions/ApiResponse'
+  default:
+    description: unexpected error
+    schema:
+      $ref: '#/definitions/ApiResponse'
+    
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"
