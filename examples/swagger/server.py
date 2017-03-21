@@ -4,8 +4,13 @@
 import getopt
 import sys
 import pyweb.openapi.app as app
+from flask_oauthlib.provider import OAuth2Provider
+# from flask_oauthlib.provider import OAuth1Provider
 from pyweb.utils.logger import init_logger
 import os
+
+
+oauth = OAuth2Provider()
 
 
 def usage():
@@ -15,7 +20,7 @@ NAME
 Usage
     python program.py [options]
 '''[1:-1]
-
+    
 
 if __name__ == '__main__':
     try:
@@ -36,5 +41,11 @@ if __name__ == '__main__':
             file = os.path.realpath(a)
         else:
             assert False, "unhandled option"
-    app.run_server(specification_base_dir=file)
+            
+    static_folder = file+"templates"
     
+    app.run_server(specification_base_dir=file,
+                   template_folder=static_folder)
+
+
+

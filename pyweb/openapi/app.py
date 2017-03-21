@@ -5,7 +5,9 @@
 """
 
 from connexion import app
+from .oauth2 import create_server
 import os
+import logging
 
 
 class ApiApplication(app.App):
@@ -40,12 +42,16 @@ class ApiApplication(app.App):
         """
         app.App.__init__(self, *args, **kw)
 
-
+        
 def run_server(
+        authType="oauth2",
         port=8000,
         package=__name__,
         specification_base_dir="swagger/",
         ip="0.0.0.0",
+        database_url='sqlite:////tmp/test.sqlite',
+        static_folder=".",
+        template_folder=".",
         arguments={"appName": "test"},
         *arg, **kw):
     """
@@ -55,6 +61,20 @@ def run_server(
                          specification_dir=specification_base_dir,
                          arguments=arguments,
                          *arg, **kw)
+    app.app.debug = True
+    app.app.secret_key = 'development'
+    app.app.config.update({
+        'SQLALCHEMY_DATABASE_URI': database_url
+    })
+    app.app.static_folder = static_folder
+    app.app.template_folder = template_folder
+
+    logging.info(app.app.root_path+app.app.template_folder)
+    
+    if authType == "oauth2":
+        create_server(app.app)
+    elif authType == "oauth1":
+        pass
     
     add_api = lambda yaml_file: app.add_api(
         yaml_file, arguments=arguments)
@@ -69,3 +89,4 @@ def run_server(
                     path = os.path.join(root[len(specification_base_dir):], i)
                     add_api(path)
     app.run(port=port)
+
