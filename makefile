@@ -1,11 +1,6 @@
 
-compile:
-	slice2py slices/*.ice --output-dir ./icemongo/Base -IDIR=./slices; \
-	mv -f ./icemongo/Base/Base/*.py ./icemongo/Base/; \
-    rm -r ./icemongo/Base/Base;
-
-compileSimple:
-	slice2py examples/simple/*.ice -I ./slices
+prepare:
+	pip install -r requirements.txt -i http://pypi.douban.com/simple/ --trusted-host pypi.douban.com
 
 develop:
 	python setup.py  develop

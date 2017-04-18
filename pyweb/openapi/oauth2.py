@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# coding: utf-8
 from datetime import datetime, timedelta
 from flask import g, render_template, request, jsonify, make_response
 from flask.ext.sqlalchemy import SQLAlchemy
