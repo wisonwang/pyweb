@@ -10,7 +10,7 @@
     python setup.py develop
     
 
-test cqq
+testfff cqq
 
 
 
