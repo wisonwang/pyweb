@@ -1,4 +1,2 @@
-# protocol buffer and grpc #
-
-# zeromq #
+# grpc and grpc tools # 
 
